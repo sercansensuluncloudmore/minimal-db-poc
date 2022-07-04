@@ -1,5 +1,4 @@
-﻿using System.Collections.Specialized;
-using System;
+﻿using System;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -33,11 +32,9 @@ namespace minimal_db_poc
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            int identifier = reader.GetInt32(0);
-                            string name = reader.GetString(1);
-                            if (!StringCollection.Equals(name, "Test_Username") && identifier != 1)
+                            while (reader.Read())
                             {
-                                throw new Exception("App Failed! There is no test data.");
+                                Console.WriteLine("{0} {1}", reader.GetInt32(0), reader.GetString(1));
                             }
                         }
                     }
