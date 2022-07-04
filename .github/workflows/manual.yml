@@ -36,4 +36,4 @@ jobs:
         sa-password: c0MplicatedP@ssword
         show-log: true
     - name: Run sqlcmd
-        run: sqlcmd -S localhost -U sa -P c0MplicatedP@ssword -d tempdb -Q "SELECT @@version;"    
+        run: "sqlcmd -S localhost -U sa -P c0MplicatedP@ssword -d tempdb -Q "SELECT @@version;"    
