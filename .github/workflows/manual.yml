@@ -21,17 +21,17 @@ jobs:
   # This workflow contains a single job called "greet"
   greet:
     # The type of runner that the job will run on
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ github.event.inputs.name }}"
-    # Runs mssql suite  
-    - name: mssql suite
-      uses: potatoqualitee/mssqlsuite@v1.5.1
-      with:
-        install: sqlengine, sqlclient, sqlpackage, localdb
-        sa-password: c0MplicatedP@ssword
-        show-log: true
+    - uses: actions/checkout@v2
+
+      - name: Run the action - mssqlsuite
+        uses: potatoqualitee/mssqlsuite@v1.5.1
+        with:
+          install: sqlengine, sqlpackage
+          show-log: true
+
+      - name: Run sqlclient
+        run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "SELECT @@version;"
