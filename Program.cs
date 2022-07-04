@@ -26,7 +26,7 @@ namespace minimal_db_poc
                     
                     connection.Open();       
 
-                    String sql = "SELECT name, collation_name FROM sys.databases";
+                    String sql = "SELECT * FROM Persons";
 
                     using (SqlCommand command = new SqlCommand(sql, connection))
                     {
