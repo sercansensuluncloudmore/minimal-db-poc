@@ -8,5 +8,5 @@ namespace minimal_db_poc
         {
             Console.WriteLine("Hello World!");
         }
-    }
+    }   
 }
