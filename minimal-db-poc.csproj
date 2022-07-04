@@ -6,4 +6,8 @@
     <RootNamespace>minimal_db_poc</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.6.0" />
+  </ItemGroup>
+
 </Project>
