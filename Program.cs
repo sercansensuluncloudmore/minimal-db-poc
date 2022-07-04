@@ -34,7 +34,7 @@ namespace minimal_db_poc
                         {
                             while (reader.Read())
                             {
-                                Console.WriteLine("{0} {1}", reader.GetString(0), reader.GetString(1));
+                                Console.WriteLine("{0} {1}", reader.GetInt32(0), reader.GetString(1));
                             }
                         }
                     }                    
