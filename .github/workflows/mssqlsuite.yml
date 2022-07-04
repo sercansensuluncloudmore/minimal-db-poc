@@ -23,4 +23,4 @@ jobs:
       - name: Run sqlclient
         run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "SELECT @@version;"
       - name: Populate Test Data from file
-        run: sqlcmd -S localhost -U sa -P dbatools.I0 -i "test_data.sql"
+        run: sqlcmd -S localhost -U sa -P dbatools.I0 -i "test_data"
