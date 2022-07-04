@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Specialized;
+using System;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -10,21 +11,21 @@ namespace minimal_db_poc
         {
             Console.WriteLine("Hello World!");
 
-            try 
-            { 
+            try
+            {
                 SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
 
-                builder.DataSource = "localhost"; 
-                builder.UserID = "sa";            
-                builder.Password = "dbatools.I0";     
+                builder.DataSource = "localhost";
+                builder.UserID = "sa";
+                builder.Password = "dbatools.I0";
                 builder.InitialCatalog = "tempdb";
-         
+
                 using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
                 {
                     Console.WriteLine("\nQuery data example:");
                     Console.WriteLine("=========================================\n");
-                    
-                    connection.Open();       
+
+                    connection.Open();
 
                     String sql = "SELECT * FROM Persons";
 
@@ -32,12 +33,14 @@ namespace minimal_db_poc
                     {
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            while (reader.Read())
+                            int identifier = reader.GetInt32(0);
+                            string name = reader.GetString(1);
+                            if (!StringCollection.Equals(name, "Test_Username") && identifier != 1)
                             {
-                                Console.WriteLine("{0} {1}", reader.GetInt32(0), reader.GetString(1));
+                                throw new Exception("App Failed! There is no test data.");
                             }
                         }
-                    }                    
+                    }
                 }
             }
             catch (SqlException e)
