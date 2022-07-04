@@ -23,4 +23,4 @@ jobs:
       - name: Run sqlclient
         run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "SELECT @@version;"
       - name: Populate Test Data
-        run: sqlcmd -S localhost -U sa -P dbatools.I0 -Q "CREATE DATABASE test_database; use test_database; CREATE TABLE Persons (PersonID int,Username varchar(255)); INSERT INTO Persons (PersonID, Username) VALUES (1, 'Test_Username'):SELECT * FROM Persons"
+        run: sqlcmd -S localhost -U sa -P dbatools.I0 -Q "CREATE DATABASE test_database; use test_database; CREATE TABLE Persons (PersonID int,Username varchar(255)); INSERT INTO Persons (PersonID, Username) VALUES (1, 'Test_Username'); SELECT * FROM Persons"
