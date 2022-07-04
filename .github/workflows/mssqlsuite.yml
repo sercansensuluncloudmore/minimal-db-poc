@@ -7,7 +7,7 @@ name: mssqlsuite
 on: [push]
 
 jobs:
-  test-everywhere:
+  db-prep-and-build:
     name: MSSQLSUITE
     runs-on: ubuntu-latest
 
@@ -24,3 +24,13 @@ jobs:
         run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "SELECT @@version;"
       - name: Populate Test Data
         run: sqlcmd -S localhost -U sa -P dbatools.I0 -Q "use tempdb; CREATE TABLE Persons (PersonID int,Username varchar(255)); INSERT INTO Persons (PersonID, Username) VALUES (1, 'Test_Username'); SELECT * FROM Persons"
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: 5.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
