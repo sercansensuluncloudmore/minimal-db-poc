@@ -21,6 +21,6 @@ jobs:
           show-log: true
 
       - name: Run sqlclient
-        run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "SELECT @@version;"
+        run: sqlcmd -S localhost -U sa -P dbatools.I0 -d test_database -Q "SELECT @@version;"
       - name: Populate Test Data
-        run: sqlcmd -S localhost -U sa -P dbatools.I0 -d test_database -Q "use test_database; CREATE TABLE Persons (PersonID int,Username varchar(255)); INSERT INTO Persons (PersonID, Username) VALUES (1, 'Test_Username'); SELECT * FROM Persons"
+        run: sqlcmd -S localhost -U sa -P dbatools.I0 -Q "use test_database; CREATE TABLE Persons (PersonID int,Username varchar(255)); INSERT INTO Persons (PersonID, Username) VALUES (1, 'Test_Username'); SELECT * FROM Persons"
