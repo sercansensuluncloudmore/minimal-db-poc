@@ -18,6 +18,7 @@ jobs:
         uses: potatoqualitee/mssqlsuite@v1.5.1
         with:
           install: sqlengine, sqlpackage
+          show-log: true
 
       - name: Run sqlclient
         run: sqlcmd -S localhost -U sa -P dbatools.I0 -d tempdb -Q "SELECT @@version;"
